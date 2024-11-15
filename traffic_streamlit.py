@@ -26,6 +26,7 @@ def load_model():
     mapie_pickle = open('mapie_pickle.pkl', 'rb') 
     mapie_model = pickle.load(mapie_pickle) 
     mapie_pickle.close()
+    
     return xg_model, mapie_model
 
 @st.cache_data
