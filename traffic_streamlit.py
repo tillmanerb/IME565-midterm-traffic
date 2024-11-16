@@ -26,7 +26,7 @@ def load_model():
     mapie_pickle = open('mapie_pickle.pkl', 'rb') 
     mapie_model = pickle.load(mapie_pickle) 
     mapie_pickle.close()
-    
+
     return xg_model, mapie_model
 
 @st.cache_data
@@ -74,13 +74,13 @@ with st.sidebar.expander("Option 2: Fill Out Form"):
             pass
         elif col == 'Hour of day':
             options = list(range(24)) #google gemini generated the list(range(24)) snippet
-            sample_df[col] = str(st.radio(label=col, options=options))
+            sample_df[col] = str(st.selectbox(label=col, options=options))
         elif col == 'Month of year':
             options = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-            sample_df[col] = st.radio(label=col, options=options)
+            sample_df[col] = st.selectbox(label=col, options=options)
         elif col == 'Day of week':
             options = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-            sample_df[col] = st.radio(label=col, options=options)
+            sample_df[col] = st.selectbox(label=col, options=options)
         else:
             if (sample_df[col].dtype != 'object'):
                 sample_df[col] = st.slider(label=col, 
@@ -88,7 +88,7 @@ with st.sidebar.expander("Option 2: Fill Out Form"):
                                                 max_value=sample_df[col].max())
             elif(sample_df[col].dtype == 'object'):
                 options = sample_df[col].unique()
-                sample_df[col] = st.radio(label=col, options=options)
+                sample_df[col] = st.selectbox(label=col, options=options)
     def submit_form():
         st.session_state.form_submitted = True
         st.session_state.file_uploaded = False
